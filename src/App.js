@@ -1,24 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import Post from './Post';
+import { db } from './firebase';
+
 function App() {
-  const [posts, setPosts] = useState([
-    {
-        username:"temoc",
-        caption:"UTD Pride",
-        imageUrl:"https://cdn.discordapp.com/attachments/757748733365714975/906333591334711296/Temoc_2016.jpg"
-    },
-    {
-        username:"ayushgopisetty",
-        caption:"UTD Pride",
-        imageUrl:"https://cdn.discordapp.com/attachments/757748733365714975/906352741973119026/UTD_Campus2.jpg"
-    },
-    {
-      username:"sunalam",
-      caption:"Temoc",
-      imageUrl:"https://cdn.discordapp.com/attachments/757748733365714975/906353648622247997/DcMnkX3VMAYKS5B.jpg"
-  }
-  ]);
+  
+  useEffect(() => {
+    db.collection('posts').onSnapshot(snapshot => {
+      setPosts(snapshot.docs.map(doc => doc.data()));
+    })
+  }, []);
+
   return (
     <div className="app">
       <div className="app__header">
