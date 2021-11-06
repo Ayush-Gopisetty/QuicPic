@@ -1,23 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
-
+import Post from './Post';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div className="app__header">
+        <img
+          className="app__headerImage"
+          src="https://cdn.discordapp.com/attachments/757748733365714975/906266039359266836/Drawing.png"
+          alt=""
+        />
+      </div>
+
+      <Post/>
+      <Post/>
+      <Post/>
     </div>
   );
 }
