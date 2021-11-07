@@ -21,11 +21,34 @@
 .post__header {
     display: flex;
     align-items: center;
-    padding: 20px 10px;
+    padding: 20px;
     background-color: grey;
 }
 
 .post__avatar {
     margin-right: 10px;
     background-color: grey;
+}
+
+.post__commentBox {
+    display: flex;
+    margin-top: 10px;
+}
+
+.post__comments {
+    padding: 20px;
+}
+.post__input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    border-top: 1px solid darkgrey;
+}
+
+.post__button {
+    flex: 0;
+    border: none;
+    color: darkgrey;
+    background-color: transparent;
+    border-top: 1px solid darkgrey;
 }
