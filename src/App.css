@@ -7,12 +7,18 @@
   height: 100vh;
 }
 
+.app__posts {
+  padding: 20px;
+  justify-content: center;
+}
+
 .app__header {
   background-color: grey;
   padding: 20px;
-  height: 25px;
   border-bottom: 1px solid darkgrey;
   object-fit: contain;
+  display: flex;
+  justify-content: space-between;
 }
 
 .app__headerImage {

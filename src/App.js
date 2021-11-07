@@ -5,6 +5,7 @@ import { db, auth } from './firebase';
 import {makeStyles} from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import {Button, Input} from '@material-ui/core';
+import ImageUpload from './ImageUpload';
 
 function getModalStyle() {
   const top = 50;
@@ -34,10 +35,10 @@ function App() {
   const [posts, setPosts] = useState([]);
   const [open, setOpen] = useState(false);
   const [openSignIn, setOpenSignIn] = useState(false);
-  const[username, setUsername] = useState('');
-  const[password, setPassword] = useState('');
-  const[email, setEmail] = useState('');
-  const[user, setUser] = useState(null);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -58,9 +59,9 @@ function App() {
   }, [user, username]);
 
   useEffect(() => {
-    db.collection('posts').onSnapshot(snapshot => {
+    db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
       setPosts(snapshot.docs.map(doc => ({
-        id: doc.id,
+        id: doc.id, 
         post: doc.data()
       })));
     })
@@ -169,22 +170,30 @@ function App() {
           src="https://cdn.discordapp.com/attachments/757748733365714975/906266039359266836/Drawing.png"
           alt=""
         />
+
+        {user ? (
+          <Button onClick={() => auth.signOut()}>Logout</Button>
+        ): (
+          <div className="app__loginContainer">
+            <Button onClick={() => setOpenSignIn(true)}>Sign In</Button> 
+            <Button onClick={() => setOpen(true)}>Sign Up</Button> 
+          </div> 
+        )}
+      </div>
+      
+      <div className="app__posts">
+        {
+          posts.map(({id, post}) => (
+            <Post key={id} username={post.username} caption={post.caption} imageUrl={post.imageUrl}/>
+          ))
+        }
       </div>
 
-      {user ? (
-        <Button onClick={() => auth.signOut()}>Logout</Button>
+      {user?.displayName ?  (
+        <ImageUpload username={user.displayName} />
       ): (
-        <div className="app__loginContainer">
-          <Button onClick={() => setOpenSignIn(true)}>Sign In</Button> 
-          <Button onClick={() => setOpen(true)}>Sign Up</Button> 
-        </div> 
+        <h3>Sorry you need to login to upload</h3>
       )}
-
-      {
-        posts.map(({id, post}) => (
-          <Post key={id} username={post.username} caption={post.caption} imageUrl={post.imageUrl}/>
-        ))
-      }
 
     </div>
   );
