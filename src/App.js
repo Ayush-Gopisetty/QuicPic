@@ -7,6 +7,7 @@ import Modal from '@material-ui/core/Modal';
 import {Button, Input} from '@material-ui/core';
 import ImageUpload from './ImageUpload';
 
+//gets the style for the sign in and sign up window
 function getModalStyle() {
   const top = 50;
   const left = 50;
@@ -18,6 +19,7 @@ function getModalStyle() {
   };
 }
 
+//Creates the style for the sign in
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
@@ -29,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//Creates the layout for the web application and adds the functionalities to it
 function App() {
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
