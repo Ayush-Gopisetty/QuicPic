@@ -4,6 +4,11 @@ import Avatar from "@material-ui/core/Avatar"
 import { db } from './firebase';
 import firebase from 'firebase';
 
+//creates a UI for allowing a loggin in user to add a post on the website application
+// adds functionality for uploading the post from any device onto the website application
+// tracks when the file has been uploaded onto the website application
+//allows user to comment on the post that the user chooses to submit
+
 function Post({postId, user, username, caption, imageUrl}) {
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState('');
