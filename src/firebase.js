@@ -1,5 +1,6 @@
 import firebase from 'firebase';
 
+// pulls data from firebase onto the website application
 const firebaseApp = firebase.initializeApp({
     apiKey: "AIzaSyBL-6579XLhL10ksx8pNTVUGH6bAK956iY",
     authDomain: "quicpic-react.firebaseapp.com",
@@ -10,6 +11,7 @@ const firebaseApp = firebase.initializeApp({
     measurementId: "G-85WG94559F"
 });
 
+//Constant variables for database authentication storage
 const db = firebase.firestore();
 const auth = firebase.auth();
 const storage = firebase.storage();
