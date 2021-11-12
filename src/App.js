@@ -43,6 +43,7 @@ function App() {
   const [email, setEmail] = useState('');
   const [user, setUser] = useState(null);
 
+  //User authentication from Firebase is implemented into the web application
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
@@ -61,6 +62,7 @@ function App() {
 
   }, [user, username]);
 
+  //The posts are added onto the web application in the most recent order
   useEffect(() => {
     db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
       setPosts(snapshot.docs.map(doc => ({
