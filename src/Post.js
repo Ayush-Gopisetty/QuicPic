@@ -8,6 +8,7 @@ import firebase from 'firebase';
 // adds functionality for uploading the post from any device onto the website application
 // tracks when the file has been uploaded onto the website application
 //allows user to comment on the post that the user chooses to submit
+//allows user to add a comment on an existing post
 
 function Post({postId, user, username, caption, imageUrl}) {
     const [comments, setComments] = useState([]);
