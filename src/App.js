@@ -100,6 +100,18 @@ function App() {
   }
 
   //Functionality is added for sign in, sign up, logout, add post, and add comment
+  // Firebase authentication is used for the sign up and sign in functionality
+  // Checks if inputted email, username, and password is in proper format for sign up functionality
+  // Checks if inputted email and password is in proper format for sign in functionality
+  // Also checks if inputted email has already been used for sign up functionality
+  // Checks if email and password has been correctly entered for sign in functionality
+  // Created Account from sign up functionality is stored on Firebase
+  // Allows logged in user to use logout functionality to take user back to sign in or sign up page
+  // Allows user to use add post functionality if user is logged in
+  // Add post functionality allows user to upload an image and set a caption for the image
+  // Also, add post functionality allows user to be able to track the image upload progress
+  // Allows user to use add comments functionality if user is logged in
+  // Add comments functionality allows user to add comments to an existing post
   return (
     <div className="app">
       <Modal
