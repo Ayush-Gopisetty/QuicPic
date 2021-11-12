@@ -4,6 +4,11 @@ import { storage, db } from "./firebase";
 import firebase from 'firebase';
 import './ImageUpload.css';
 
+//add functionality to allow logged in user to upload image onto the website application
+//tracks when the image has been uploaded onto the application
+//allows logged in user to set a caption for the uploaded image
+
+
 function ImageUpload({username}) {
     const [image, setImage] = useState(null);
     const [progress, setProgress] = useState(0);
