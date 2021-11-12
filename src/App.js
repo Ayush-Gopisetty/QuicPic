@@ -70,6 +70,8 @@ function App() {
     })
   }, []);
 
+  //Allows user to input username, email, and password to create account
+  //account is stored in Firebase
   const signUp = (event) => {
     event.preventDefault();
 
@@ -84,6 +86,7 @@ function App() {
     setOpen(false);
   }
 
+  //Allows user to input email, and password to login in
   const signIn = (event) => {
     event.preventDefault();
 
@@ -94,6 +97,7 @@ function App() {
       setOpenSignIn(false);
   }
 
+  //Functionality is added for sign in, sign up, logout, add post, and add comment
   return (
     <div className="app">
       <Modal
