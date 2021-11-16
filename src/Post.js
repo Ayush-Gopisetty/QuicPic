@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Post.css';
 import Avatar from "@material-ui/core/Avatar"
-import { db } from './firebase';
+import { db, auth } from './firebase';
 import firebase from 'firebase';
 
 //creates a UI for allowing a loggin in user to add a post on the website application
@@ -13,6 +13,7 @@ import firebase from 'firebase';
 function Post({postId, user, username, caption, imageUrl}) {
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState('');
+    const [liked, setLiked] = useState(false);
 
     useEffect(() => {
         let unsubscribe;
@@ -43,6 +44,27 @@ function Post({postId, user, username, caption, imageUrl}) {
         setComment('');
     }
 
+    const deletePost = (event) => {
+        event.preventDefault();
+
+        db.collection("posts").doc(postId).delete()
+        .then(function() {
+            alert("Post has been successfully deleted");
+        }).catch(function(error) {
+            console.log("Error removing post: ", error);
+        });
+
+        firebase.storage().refFromURL(imageUrl).delete().then(function() {
+            //File has successfully been deleted
+        }).catch(function(error) {
+            //An error has occurred!
+        });
+    }
+
+    const handleLiked = () => {
+        setLiked((liked) => !liked);
+    }
+    
     return (
         <div className="post">
             <div className="post__header">
@@ -56,6 +78,20 @@ function Post({postId, user, username, caption, imageUrl}) {
             </div>
 
             <img className="post__image" src={imageUrl} alt=""/>
+
+            
+            {/*user && (<div className="flex">
+                <svg
+                    onClick={handleLiked}
+                    src="https://cdn.discordapp.com/attachments/757748733365714975/910000362298150952/358-3583360_e-3-hearts-hearts-like-icon-instagram-heart-icon-svg.png"
+                    fill="none"
+                    className={`w-8 mr-4 select-none cursor-pointer focus:outline-none ${
+                    liked ? 'fill-red text-red-primary' : 'text-black-light'
+                    }`}
+                    >
+                </svg>
+            </div>
+            */}
 
             <h4 className="post__text"><strong>{username}</strong> {caption}</h4>
 
@@ -85,6 +121,15 @@ function Post({postId, user, username, caption, imageUrl}) {
                         Post
                     </button>
                 </form>
+            )}
+            {user && username === auth.currentUser.displayName && (
+                <button
+                    className="delete__button"
+                    type="submit"
+                    onClick={deletePost}
+                >
+                    Delete Post
+                </button>
             )}
         </div>
     )

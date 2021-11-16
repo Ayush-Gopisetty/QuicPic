@@ -51,4 +51,16 @@
     color: darkgrey;
     background-color: transparent;
     border-top: 1px solid darkgrey;
+    border-bottom: 1px solid darkgrey;
+}
+
+.delete__button {
+    flex: 0;
+    border: none;
+    color: darkgrey;
+    background-color: transparent;
+    border-top: 1px solid darkgrey;
+    border-bottom: 1px solid darkgrey;
+    border-left: 1px solid darkgrey;
+    border-right: 1px solid darkgrey;
 }
