@@ -112,6 +112,8 @@ function App() {
   // Also, add post functionality allows user to be able to track the image upload progress
   // Allows user to use add comments functionality if user is logged in
   // Add comments functionality allows user to add comments to an existing post
+  // Delete post functionality allows user to delete a post that the user had uploaded
+  // Delete comment functionality allows user to user to delte a comments the user had previously added to a post
   return (
     <div className="app">
       <Modal

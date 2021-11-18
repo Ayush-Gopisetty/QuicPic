@@ -9,11 +9,11 @@ import firebase from 'firebase';
 // tracks when the file has been uploaded onto the website application
 //allows user to comment on the post that the user chooses to submit
 //allows user to add a comment on an existing post
-
+//allows user to delete a post that the user has uploaded
+//allows user to delete a comment that the user has added
 function Post({postId, user, username, caption, imageUrl}) {
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState('');
-    const [liked, setLiked] = useState(false);
 
     useEffect(() => {
         let unsubscribe;
@@ -24,7 +24,11 @@ function Post({postId, user, username, caption, imageUrl}) {
                 .collection("comments")
                 .orderBy('timestamp', 'desc')
                 .onSnapshot((snapshot) => {
-                    setComments(snapshot.docs.map((doc) => doc.data()));
+                    setComments(snapshot.docs.map((doc) => ({
+                            id: doc.id,
+                            comment: doc.data(),
+                        }))
+                    );
                 });
         }
 
@@ -60,11 +64,11 @@ function Post({postId, user, username, caption, imageUrl}) {
             //An error has occurred!
         });
     }
-
-    const handleLiked = () => {
-        setLiked((liked) => !liked);
-    }
     
+    const deleteComment = (id) => {
+        db.collection("posts").doc(postId).collection("comments").doc(id).delete();
+    }
+
     return (
         <div className="post">
             <div className="post__header">
@@ -79,27 +83,25 @@ function Post({postId, user, username, caption, imageUrl}) {
 
             <img className="post__image" src={imageUrl} alt=""/>
 
-            
-            {/*user && (<div className="flex">
-                <svg
-                    onClick={handleLiked}
-                    src="https://cdn.discordapp.com/attachments/757748733365714975/910000362298150952/358-3583360_e-3-hearts-hearts-like-icon-instagram-heart-icon-svg.png"
-                    fill="none"
-                    className={`w-8 mr-4 select-none cursor-pointer focus:outline-none ${
-                    liked ? 'fill-red text-red-primary' : 'text-black-light'
-                    }`}
-                    >
-                </svg>
-            </div>
-            */}
-
             <h4 className="post__text"><strong>{username}</strong> {caption}</h4>
 
             <div className="post__comments">
-                {comments.map((comment) => (
-                    <p>
-                        <strong>{comment.username}</strong> {comment.text}
-                    </p>
+                {comments.map(({id, comment}) => (
+                    <div className="post__comment">
+                        <p>
+                            <strong>{comment.username}</strong> {comment.text}
+                        </p>
+                        {comment.username == user?.displayName ? (
+                            <button
+                                className="delete__comment"
+                                onClick={() => deleteComment(id)}
+                            >
+                                X
+                            </button>
+                        ) : (
+                            <div></div>
+                        )}
+                    </div>
                 ))}
             </div>
             
