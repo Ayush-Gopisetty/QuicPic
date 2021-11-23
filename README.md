@@ -1,3 +1,5 @@
+# QuicPic
+
 <br />
 
 <!-- TABLE OF CONTENTS -->
