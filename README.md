@@ -29,7 +29,7 @@ This project was created to allow students at the University of Texas to better 
 
 1. Clone the repo
 ```sh
-git clone https://github.com/Codubee/MathSkillsMW3-4-Front.git
+git clone https://github.com/Ayush-Gopisetty/quicpic.git
 ```
 2. Install NPM packages
 ```sh
