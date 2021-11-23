@@ -17,7 +17,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This project was created during the Summer 2021 session of Codubee. We built this application as a solution to those who want to practice their math skills.
+This project was created to allow students at the University of Texas to better connect with each other.
 
 
 <!-- GETTING STARTED -->
