@@ -21,8 +21,6 @@ This project was created to allow students at the University of Texas to better 
 
 #### To get a local copy up and running follow these simple steps:
 
-**For the frontend**
-
 1. Clone the repo
 ```sh
 git clone https://github.com/Ayush-Gopisetty/quicpic.git
