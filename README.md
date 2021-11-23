@@ -1,9 +1,3 @@
-<!-- PROJECT LOGO -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Last Commit][last-commit]][commit-url]
-[![Pull Requests][pr-shield]][pr-url]
-[![MIT License][license-shield]][license-url]
-
 <br />
 
 <!-- TABLE OF CONTENTS -->
